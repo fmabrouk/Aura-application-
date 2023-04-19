@@ -607,7 +607,7 @@ class _ListeItemState extends State<ListeItem> {
                   width: 120,
                   child: Image.asset('assets/images/AURA_VISUEL02.jpg'),
                 ),
-              if (widget.article.title ==
+              /*if (widget.article.title ==
                   "Manufacture sur Seine - Quartier Terre")
                 Expanded(
                   child: Container(
@@ -11283,11 +11283,11 @@ class _ListeItemState extends State<ListeItem> {
                           ),
                         ],
                       )),
-                ),
-              if (widget.article.image.isEmpty)
+                ),*/
+              if (widget.article.image.isNotEmpty)
                 Expanded(
                   child: Container(
-                      height: 150,
+                      height: 220,
                       margin: EdgeInsets.all(10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -11504,7 +11504,227 @@ class _ListeItemState extends State<ListeItem> {
                         ],
                       )),
                 ),
-              if (widget.article.title == "220 logements Rue de Meaux")
+              if (widget.article.image.isEmpty)
+                Expanded(
+                  child: Container(
+                      height: 200,
+                      margin: EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        //mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              child: Row(
+                                  //crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                        child: !widget.trade
+                                            ? Text(
+                                                getTitle(),
+                                                // gettitlefromliste(options),
+                                                style: TextStyle(
+                                                  fontFamily: 'myriad',
+                                                  fontSize: 18,
+                                                  color: Colors.black,
+                                                ),
+                                                //maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              )
+                                            : widget.article.titleEN.isEmpty
+                                                ? Text(
+                                                    getTitle(),
+                                                    // gettitlefromliste(options),
+                                                    style: TextStyle(
+                                                      fontFamily: 'myriad',
+                                                      fontSize: 18,
+                                                      color: Colors.black,
+                                                    ),
+                                                    //maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  )
+                                                : Text(
+                                                    getTitleEn(),
+                                                    // gettitlefromliste(options),
+                                                    style: TextStyle(
+                                                      fontFamily: 'myriad',
+                                                      fontSize: 18,
+                                                      color: Colors.black,
+                                                    ),
+                                                    //maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  )),
+                                    if (widget.article.audio.isNotEmpty)
+                                      IconButton(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 25),
+                                        //padding: EdgeInsets.only(top: 4.0),
+                                        iconSize: 26,
+                                        icon: (!widget.firstLaunchOfArticle)
+                                            ? Image.asset(
+                                                "assets/images/ICON_VOLUME_VIOLET.png")
+                                            : (widget.article ==
+                                                    widget.secondArticle)
+                                                ? Image.asset(
+                                                    "assets/images/ICON_VOLUME.png")
+                                                : Image.asset(
+                                                    "assets/images/ICON_VOLUME_VIOLET.png"),
+                                        onPressed: () {
+                                          newState = widget.audioState;
+
+                                          //Les nouvelles durée initialisé à 0 si on change d'article
+                                          //voir condition ternaire dans l'appel du constructeur de Audio juste en dessous
+                                          Duration savedPosition =
+                                              new Duration();
+                                          Duration savedMaxDuration =
+                                              new Duration();
+
+                                          if (widget.secondArticle !=
+                                                  widget.article ||
+                                              (widget.audioState &&
+                                                  widget.secondArticle !=
+                                                      widget.article)) {
+                                            widget.play(widget.snapshot);
+                                            newState = true;
+                                          }
+                                          //Le statefulbuilder ne sert plus a rien normalement
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) =>
+                                                  StatefulBuilder(builder:
+                                                      (context, setState) {
+                                                    return GestureDetector(
+                                                      onTap: () => Navigator.of(
+                                                              context,
+                                                              rootNavigator:
+                                                                  true)
+                                                          .pop(),
+                                                      child: Dismissible(
+                                                          movementDuration:
+                                                              Duration(
+                                                                  seconds: 1),
+                                                          key: Key("key"),
+                                                          direction:
+                                                              DismissDirection
+                                                                  .vertical,
+                                                          onDismissed: (value) {
+                                                            Navigator.of(
+                                                                    context,
+                                                                    rootNavigator:
+                                                                        true)
+                                                                .pop();
+                                                          },
+                                                          child: Audio(
+                                                            article:
+                                                                widget.article,
+                                                            trade: widget.trade,
+                                                            audioPlayer: widget
+                                                                .audioPlayer,
+                                                            snapshot:
+                                                                widget.snapshot,
+                                                            audioState: widget
+                                                                    .firstLaunchOfArticle
+                                                                ? newState !=
+                                                                        null
+                                                                    ? newState
+                                                                    : widget
+                                                                        .audioState
+                                                                : widget
+                                                                    .audioState,
+                                                            lance: widget.lance,
+                                                            play: widget.play,
+                                                            pausePlayer: widget
+                                                                .pausePlayer,
+                                                            stopPlayer: widget
+                                                                .stopPlayer,
+                                                            cameFromArticeItem:
+                                                                true,
+                                                            isPopupOpen: widget
+                                                                .isPopUpOpen,
+                                                            updateDuration: widget
+                                                                .updateDuration,
+                                                            savedMaxDuration: (widget
+                                                                        .secondArticle ==
+                                                                    widget
+                                                                        .article)
+                                                                ? widget
+                                                                    .savedMaxDuration
+                                                                : savedMaxDuration,
+                                                            savedPosition: (widget
+                                                                        .secondArticle ==
+                                                                    widget
+                                                                        .article)
+                                                                ? widget
+                                                                    .savedPosition
+                                                                : savedPosition,
+                                                            firstLaunchOfArticle:
+                                                                widget
+                                                                    .firstLaunchOfArticle,
+                                                            setFirstLaunchOfArticle:
+                                                                widget
+                                                                    .setFirstLaunchOfArticle,
+                                                            afficherArticle: widget
+                                                                .afficherArticle,
+                                                            marker:
+                                                                widget.marker,
+                                                            updateMarkerForPopUp:
+                                                                widget
+                                                                    .updateMarkerForPopUp,
+                                                            articleCallback: widget
+                                                                .articleCallback,
+                                                            randomAudioCallback:
+                                                                randomAudioCallback,
+                                                            articlesData: widget
+                                                                .articlesData,
+                                                            markersData: widget
+                                                                .markersData,
+                                                          )),
+                                                    );
+                                                  })).then(
+                                              (value) => setStateLance());
+                                        },
+                                      ),
+                                  ]),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: Text(
+                                getArchitecte(),
+                                style: TextStyle(
+                                    fontFamily: 'myriad',
+                                    color: Colors.black54,
+                                    fontSize: 14),
+                                maxLines: 1,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: Text(
+                                getDate(),
+                                style: TextStyle(
+                                    fontFamily: 'myriad',
+                                    color: Colors.black54,
+                                    fontSize: 14),
+                                maxLines: 1,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            child: Wrap(
+                              spacing: 3,
+                              children: _buildAllChip().toList(),
+                              runSpacing: 2,
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              /*if (widget.article.title == "220 logements Rue de Meaux")
                 Expanded(
                   child: Container(
                       height: 155,
@@ -11726,7 +11946,7 @@ class _ListeItemState extends State<ListeItem> {
                           ),
                         ],
                       )),
-                ),
+                ),*/
             ]),
       ),
     );
