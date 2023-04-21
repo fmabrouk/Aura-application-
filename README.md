@@ -7,6 +7,8 @@ Nous sommes la 3eme équipe en charge de cette application, pour l'UE projet de 
 Nous sommes encore en train d'apprendre à développer, puisqu'aucun de nous n'a d'expérience pro,
 veuillez nous excusez si certain bout de code sont "moches".
 
+![](Aura.jpg)
+
 
 
 
