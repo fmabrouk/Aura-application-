@@ -100,8 +100,9 @@ class barreRecherche extends SearchDelegate<Article> {
         : articleLists.where((article) {
             final titreLower = article.title.toLowerCase();
             final queryLower = query.toLowerCase();
-
-            return titreLower.contains(queryLower);
+            final architecteLower = article.architecte.toLowerCase();
+            return titreLower.contains(queryLower) ||
+                architecteLower.contains(queryLower);
           }).toList();
 
     return ListView.builder(

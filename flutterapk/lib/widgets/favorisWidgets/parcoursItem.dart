@@ -10,13 +10,15 @@ class ParcoursItem extends StatefulWidget {
   final Function fonctionStcokeIdArticle;
   final Function deleteItem;
   String idMarker;
+  bool trade;
   ParcoursItem(
       {this.taille,
       this.liste,
       this.deleteTexte,
       this.fonctionStcokeIdArticle,
       this.deleteItem,
-      this.idMarker});
+      this.idMarker,
+      this.trade});
   @override
   _ParcoursItemState createState() => _ParcoursItemState();
 }
@@ -36,12 +38,77 @@ class _ParcoursItemState extends State<ParcoursItem> {
             //Direction de droite à gauche
             direction: DismissDirection.endToStart,
             onDismissed: (direction) async {
-              // Suppression du texte sauvegardé
-              widget.deleteTexte(currentText);
-
-              widget.liste.remove(currentText);
-
-              widget.liste.remove(currentColor);
+              if (widget.trade == false) {
+                bool confirmDelete = await showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("Supprimer ce parcours ?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: Text("Non"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, true);
+                          },
+                          child: Text("Oui"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                if (confirmDelete == true) {
+                  // delete the text
+                  widget.deleteTexte(currentText);
+                  // delete the corresponding elements from the list
+                  widget.liste.remove(currentText);
+                  //widget.liste.remove(currentTaille);
+                  widget.liste.remove(currentColor);
+                } else {
+                  // if the user cancels the deletion, simply rebuild the widget to show the text again
+                  // setState(() {});
+                  Navigator.pop(context, false);
+                  //return false;
+                }
+              } else {
+                bool confirmDelete = await showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("Do you want to delete this list ?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: Text("No"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, true);
+                          },
+                          child: Text("Yes"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                if (confirmDelete == true) {
+                  // delete the text
+                  widget.deleteTexte(currentText);
+                  // delete the corresponding elements from the list
+                  widget.liste.remove(currentText);
+                  //widget.liste.remove(currentTaille);
+                  widget.liste.remove(currentColor);
+                } else {
+                  // if the user cancels the deletion, simply rebuild the widget to show the text again
+                  setState(() {});
+                }
+              }
             },
             background: Container(
               color: Colors.red,

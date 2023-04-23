@@ -1163,6 +1163,7 @@ class _ArticleItemState extends State<ArticleItem> {
                                                           fonctionStcokeIdArticle,
                                                       idMarker:
                                                           widget.article.id,
+                                                      trade: widget.trade,
                                                     ))
                                                   ],
                                                 ),
@@ -1176,7 +1177,6 @@ class _ArticleItemState extends State<ArticleItem> {
                           }
                           widget.changeFavorite(widget.idMaker);
                           widget.deleteItem(widget.article.id);
-                          // print(widget.article.id);
                         },
                         child: Container(
                             width: 40,

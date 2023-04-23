@@ -1197,9 +1197,9 @@ class _CarteScreenState extends State<CarteScreen> {
               children: [
                 TileLayer(
                   urlTemplate:
-                      "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                      // "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
 
-                  //'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
                 ),
                 MarkerLayer(
@@ -1514,162 +1514,6 @@ class _CarteScreenState extends State<CarteScreen> {
                                 liste: savedElements,
                                 deleteTexte: deleteTexte,
                               )
-                              /*Expanded(
-                                child: ListView.builder(
-                                  itemCount: savedElements.length,
-                                  itemBuilder: (context, index) {
-                                    final currentText =
-                                        savedElements[index].text;
-                                    final currentTaille =
-                                        savedElements[index].taille;
-
-                                    final currentColor =
-                                        savedElements[index].color;
-                                    return Dismissible(
-                                      key: Key(currentText),
-                                      //Direction de droite à gauche
-                                      direction: DismissDirection.endToStart,
-
-                                      onDismissed: (direction) async {
-                                        if (widget.trade == false) {
-                                          bool confirmDelete = await showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                    "Supprimer ce parcours ?"),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(
-                                                          context, false);
-                                                    },
-                                                    child: Text("Non"),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(
-                                                          context, true);
-                                                    },
-                                                    child: Text("Oui"),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                          if (confirmDelete == true) {
-                                            // delete the text
-                                            deleteTexte(currentText);
-                                            // delete the corresponding elements from the list
-                                            savedElements.remove(currentText);
-                                            savedElements.remove(currentTaille);
-                                            savedElements.remove(currentColor);
-                                          } else {
-                                            // if the user cancels the deletion, simply rebuild the widget to show the text again
-                                            setState(() {});
-                                          }
-                                        } else {
-                                          bool confirmDelete = await showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                    "Do you want to delete this list ?"),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(
-                                                          context, false);
-                                                    },
-                                                    child: Text("No"),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(
-                                                          context, true);
-                                                    },
-                                                    child: Text("Yes"),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                          if (confirmDelete == true) {
-                                            // delete the text
-                                            deleteTexte(currentText);
-                                            // delete the corresponding elements from the list
-                                            savedElements.remove(currentText);
-                                            savedElements.remove(currentTaille);
-                                            savedElements.remove(currentColor);
-                                          } else {
-                                            // if the user cancels the deletion, simply rebuild the widget to show the text again
-                                            setState(() {});
-                                          }
-                                        }
-                                      },
-                                      background: Container(
-                                        color: Colors.red,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Icon(
-                                              Icons.delete,
-                                              color: Colors.white,
-                                            ),
-                                            SizedBox(
-                                              width: 20,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-
-                                      // le container du bouton text
-                                      child: Container(
-                                        margin: EdgeInsets.all(10),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20, vertical: 10),
-                                        child: TextButton(
-                                          onPressed: () async {},
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                width: 25.0,
-                                                height: 25.0,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: currentColor),
-                                                child: Center(
-                                                  child: Text(
-                                                    currentTaille,
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(width: 16),
-                                              Expanded(
-                                                  child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    currentText,
-                                                    style: TextStyle(
-                                                        fontFamily: 'myriad',
-                                                        fontSize: 18,
-                                                        color: currentColor),
-                                                  ),
-                                                ],
-                                              ))
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),*/
                             ],
                           ),
                         );
@@ -1732,30 +1576,6 @@ class _CarteScreenState extends State<CarteScreen> {
               setRotationImage: setRotationImage,
               mapController: mapController,
             ),
-            /*Positioned(
-              left: 34,
-              top: 69,
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      mapController.rotate(0);
-                    });
-                  },
-                  child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Transform.rotate(
-                      angle: setRotationImage(0),
-                      child: Image(
-                        image:
-                            AssetImage('assets/location-arrow-solid copie.png'),
-                      ),
-                    ),
-                  )),
-            ),*/
 
             ///Affiche l'article
             if (_idArticle != null)
