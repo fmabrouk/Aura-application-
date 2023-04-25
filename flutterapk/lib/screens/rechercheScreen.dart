@@ -1073,9 +1073,9 @@ class _RechercheScreenState extends State<RechercheScreen> {
               children: [
                 TileLayer(
                   urlTemplate:
-                      "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                      //"https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
 
-                  //'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
                 ),
                 MarkerLayer(
@@ -1105,7 +1105,7 @@ class _RechercheScreenState extends State<RechercheScreen> {
               child: IconButton(
                 icon: Icon(
                   Icons.menu,
-                  color: Colors.white,
+                  color: Colors.black,
                   size: 40,
                 ),
                 onPressed: () => scaffoldKey.currentState.openDrawer(),
@@ -1406,7 +1406,7 @@ class _RechercheScreenState extends State<RechercheScreen> {
                           child: Icon(
                             Icons.add,
                             size: 22,
-                            color: Colors.white,
+                            color: Color.fromRGBO(206, 63, 143, 1),
                           ),
                         ),
                         Align(
@@ -1416,7 +1416,7 @@ class _RechercheScreenState extends State<RechercheScreen> {
                               height: 18,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.white,
+                                color: Color.fromRGBO(206, 63, 143, 1),
                               ),
                             ))
                       ],
@@ -1442,7 +1442,7 @@ class _RechercheScreenState extends State<RechercheScreen> {
                     child: IconButton(
                       icon: Image.asset(
                         'assets/images/icones/ICON_LIVRE.png',
-                        color: Colors.white,
+                        color: Color.fromRGBO(206, 63, 143, 1),
                       ),
                     ),
                   ),

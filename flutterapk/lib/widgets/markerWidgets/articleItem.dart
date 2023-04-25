@@ -1006,174 +1006,337 @@ class _ArticleItemState extends State<ArticleItem> {
                       GestureDetector(
                         onTap: () async {
                           if (!widget.like) {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                      title: Text("Ajouter à un parcours ?"),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            widget
-                                                .changeFavorite(widget.idMaker);
-                                            widget
-                                                .deleteItem(widget.article.id);
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text("Non"),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop(true);
+                            if (!widget.trade) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                        title: Text("Ajouter à un parcours ?"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              widget.changeFavorite(
+                                                  widget.idMaker);
+                                              widget.deleteItem(
+                                                  widget.article.id);
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text("Non"),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop(true);
 
-                                            return showModalBottomSheet(
-                                              context: context,
-                                              builder: (context) => Container(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.6,
-                                                child: Column(
-                                                  children: [
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.all(10),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            '   Enregistrer dans ...',
-                                                            style: TextStyle(
-                                                              fontSize: 20,
-                                                              fontFamily:
-                                                                  'myriad',
-                                                            ),
-                                                          ),
-                                                          SingleChildScrollView(
-                                                            child:
-                                                                ElevatedButton(
-                                                              onPressed: () {
-                                                                showDialog(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (BuildContext
-                                                                          context) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'Nom du parcours'),
-                                                                      content:
-                                                                          SingleChildScrollView(
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.min,
-                                                                          children: [
-                                                                            Text('Couleur du texte :'),
-                                                                            SizedBox(height: 10),
-                                                                            ColorPicker(
-                                                                              pickerColor: textColor,
-                                                                              onColorChanged: changeTextColor,
-                                                                              pickerAreaHeightPercent: 0.8,
-                                                                            ),
-                                                                            SizedBox(height: 10),
-                                                                            TextField(
-                                                                              controller: _textEditingController,
-                                                                              decoration: InputDecoration(hintText: 'Entrez le texte ici'),
-                                                                              onChanged: (text) {
-                                                                                // Convertit la première lettre en majuscule
-                                                                                _textEditingController.value = TextEditingValue(
-                                                                                  text: text.length > 0 ? text[0].toUpperCase() + text.substring(1) : '',
-                                                                                  selection: _textEditingController.selection,
-                                                                                );
-                                                                              },
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      actions: <
-                                                                          Widget>[
-                                                                        TextButton(
-                                                                          child:
-                                                                              Text('Annuler'),
-                                                                          onPressed:
-                                                                              () {
-                                                                            Navigator.of(context).pop();
-                                                                          },
-                                                                        ),
-                                                                        TextButton(
-                                                                          child:
-                                                                              Text('OK'),
-                                                                          onPressed:
-                                                                              () {
-                                                                            // Sauvegarde du texte entré
-                                                                            final newText =
-                                                                                _textEditingController.text;
-                                                                            //couleur en hexadecimal
-                                                                            String
-                                                                                hexColor =
-                                                                                colorToString(textColor);
-                                                                            fonctionStockeFirebase(newText);
-                                                                            fonctionAjoutCouleur(newText,
-                                                                                hexColor);
-                                                                            if (newText.isNotEmpty) {
-                                                                              savedElements.add(SavedElement(newText, textColor, false));
-                                                                            }
-                                                                            Navigator.of(context).pop();
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                              child: Text(
-                                                                '+ Parcours',
-                                                                style: TextStyle(
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            33,
-                                                                            44,
-                                                                            243)),
-                                                              ),
-                                                              style:
-                                                                  ButtonStyle(
-                                                                backgroundColor:
-                                                                    MaterialStateProperty.all<
-                                                                            Color>(
-                                                                        Colors
-                                                                            .white),
+                                              return showModalBottomSheet(
+                                                context: context,
+                                                builder: (context) => Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.6,
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.all(10),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              '   Enregistrer dans ...',
+                                                              style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontFamily:
+                                                                    'myriad',
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                            SingleChildScrollView(
+                                                              child:
+                                                                  ElevatedButton(
+                                                                onPressed: () {
+                                                                  showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Nom du parcours'),
+                                                                        content:
+                                                                            SingleChildScrollView(
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            children: [
+                                                                              Text('Couleur du texte :'),
+                                                                              SizedBox(height: 10),
+                                                                              ColorPicker(
+                                                                                pickerColor: textColor,
+                                                                                onColorChanged: changeTextColor,
+                                                                                pickerAreaHeightPercent: 0.8,
+                                                                              ),
+                                                                              SizedBox(height: 10),
+                                                                              TextField(
+                                                                                controller: _textEditingController,
+                                                                                decoration: InputDecoration(hintText: 'Entrez le texte ici'),
+                                                                                onChanged: (text) {
+                                                                                  // Convertit la première lettre en majuscule
+                                                                                  _textEditingController.value = TextEditingValue(
+                                                                                    text: text.length > 0 ? text[0].toUpperCase() + text.substring(1) : '',
+                                                                                    selection: _textEditingController.selection,
+                                                                                  );
+                                                                                },
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                        actions: <
+                                                                            Widget>[
+                                                                          TextButton(
+                                                                            child:
+                                                                                Text('Annuler'),
+                                                                            onPressed:
+                                                                                () {
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                          ),
+                                                                          TextButton(
+                                                                            child:
+                                                                                Text('OK'),
+                                                                            onPressed:
+                                                                                () {
+                                                                              // Sauvegarde du texte entré
+                                                                              final newText = _textEditingController.text;
+                                                                              //couleur en hexadecimal
+                                                                              String hexColor = colorToString(textColor);
+                                                                              fonctionStockeFirebase(newText);
+                                                                              fonctionAjoutCouleur(newText, hexColor);
+                                                                              if (newText.isNotEmpty) {
+                                                                                savedElements.add(SavedElement(newText, textColor, false));
+                                                                              }
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                                child: Text(
+                                                                  '+ Parcours',
+                                                                  style: TextStyle(
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          33,
+                                                                          44,
+                                                                          243)),
+                                                                ),
+                                                                style:
+                                                                    ButtonStyle(
+                                                                  backgroundColor:
+                                                                      MaterialStateProperty.all<
+                                                                              Color>(
+                                                                          Colors
+                                                                              .white),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Expanded(
-                                                        child: ParcoursItem(
-                                                      taille:
-                                                          savedElements.length,
-                                                      liste: savedElements,
-                                                      deleteTexte: deleteTexte,
-                                                      deleteItem: deleteItem,
-                                                      fonctionStcokeIdArticle:
-                                                          fonctionStcokeIdArticle,
-                                                      idMarker:
-                                                          widget.article.id,
-                                                      trade: widget.trade,
-                                                    ))
-                                                  ],
+                                                      Expanded(
+                                                          child: ParcoursItem(
+                                                        taille: savedElements
+                                                            .length,
+                                                        liste: savedElements,
+                                                        deleteTexte:
+                                                            deleteTexte,
+                                                        deleteItem: deleteItem,
+                                                        fonctionStcokeIdArticle:
+                                                            fonctionStcokeIdArticle,
+                                                        idMarker:
+                                                            widget.article.id,
+                                                        trade: widget.trade,
+                                                      ))
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                          child: Text("Oui"),
-                                        ),
-                                      ]);
-                                });
+                                              );
+                                            },
+                                            child: Text("Oui"),
+                                          ),
+                                        ]);
+                                  });
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                        title: Text("Add to a course ?"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              widget.changeFavorite(
+                                                  widget.idMaker);
+                                              widget.deleteItem(
+                                                  widget.article.id);
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text("No"),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop(true);
+
+                                              return showModalBottomSheet(
+                                                context: context,
+                                                builder: (context) => Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.6,
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.all(10),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              '   Save in ...',
+                                                              style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontFamily:
+                                                                    'myriad',
+                                                              ),
+                                                            ),
+                                                            SingleChildScrollView(
+                                                              child:
+                                                                  ElevatedButton(
+                                                                onPressed: () {
+                                                                  showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'course name'),
+                                                                        content:
+                                                                            SingleChildScrollView(
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            children: [
+                                                                              Text('Course color :'),
+                                                                              SizedBox(height: 10),
+                                                                              ColorPicker(
+                                                                                pickerColor: textColor,
+                                                                                onColorChanged: changeTextColor,
+                                                                                pickerAreaHeightPercent: 0.8,
+                                                                              ),
+                                                                              SizedBox(height: 10),
+                                                                              TextField(
+                                                                                controller: _textEditingController,
+                                                                                decoration: InputDecoration(hintText: 'Enter the name of the course'),
+                                                                                onChanged: (text) {
+                                                                                  // Convertit la première lettre en majuscule
+                                                                                  _textEditingController.value = TextEditingValue(
+                                                                                    text: text.length > 0 ? text[0].toUpperCase() + text.substring(1) : '',
+                                                                                    selection: _textEditingController.selection,
+                                                                                  );
+                                                                                },
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                        actions: <
+                                                                            Widget>[
+                                                                          TextButton(
+                                                                            child:
+                                                                                Text('Cancel'),
+                                                                            onPressed:
+                                                                                () {
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                          ),
+                                                                          TextButton(
+                                                                            child:
+                                                                                Text('OK'),
+                                                                            onPressed:
+                                                                                () {
+                                                                              // Sauvegarde du texte entré
+                                                                              final newText = _textEditingController.text;
+                                                                              //couleur en hexadecimal
+                                                                              String hexColor = colorToString(textColor);
+                                                                              fonctionStockeFirebase(newText);
+                                                                              fonctionAjoutCouleur(newText, hexColor);
+                                                                              if (newText.isNotEmpty) {
+                                                                                savedElements.add(SavedElement(newText, textColor, false));
+                                                                              }
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                                child: Text(
+                                                                  '+ Course',
+                                                                  style: TextStyle(
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          33,
+                                                                          44,
+                                                                          243)),
+                                                                ),
+                                                                style:
+                                                                    ButtonStyle(
+                                                                  backgroundColor:
+                                                                      MaterialStateProperty.all<
+                                                                              Color>(
+                                                                          Colors
+                                                                              .white),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                          child: ParcoursItem(
+                                                        taille: savedElements
+                                                            .length,
+                                                        liste: savedElements,
+                                                        deleteTexte:
+                                                            deleteTexte,
+                                                        deleteItem: deleteItem,
+                                                        fonctionStcokeIdArticle:
+                                                            fonctionStcokeIdArticle,
+                                                        idMarker:
+                                                            widget.article.id,
+                                                        trade: widget.trade,
+                                                      ))
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Text("Yes"),
+                                          ),
+                                        ]);
+                                  });
+                            }
                           }
                           widget.changeFavorite(widget.idMaker);
                           widget.deleteItem(widget.article.id);

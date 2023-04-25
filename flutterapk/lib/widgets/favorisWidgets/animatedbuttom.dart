@@ -45,61 +45,84 @@ class _AnimatedButtomState extends State<AnimatedButtom> {
           innerVerticalPadding: 0,
           children: [
             ButtonBarEntry(
-              onTap: () {
-                setState(() {
-                  _firstButtonColor = Colors.white;
-                  _secondButtonColor = Color.fromRGBO(206, 63, 143, 1);
-                });
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CarteScreen(
-                            auth: widget.auth,
-                            trade: widget.trade,
-                            user: widget.user,
-                            login: widget.login,
-                          )),
-                );
-              },
-              child: Column(
-                children: [
-                  SizedBox(height: 8),
-                  Text(
-                    'Carte',
-                    style: TextStyle(color: _firstButtonColor, fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
+                onTap: () {
+                  setState(() {
+                    _firstButtonColor = Colors.white;
+                    _secondButtonColor = Color.fromRGBO(206, 63, 143, 1);
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CarteScreen(
+                              auth: widget.auth,
+                              trade: widget.trade,
+                              user: widget.user,
+                              login: widget.login,
+                            )),
+                  );
+                },
+                child: !widget.trade
+                    ? Column(
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'Carte',
+                            style: TextStyle(
+                                color: _firstButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'Map',
+                            style: TextStyle(
+                                color: _firstButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )),
             ButtonBarEntry(
-              onTap: () {
-                setState(() {
-                  _firstButtonColor = Color.fromRGBO(206, 63, 143, 1);
-                  _secondButtonColor = Colors.white;
-                });
-                ;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => listeScreen(
-                            auth: widget.auth,
-                            user: widget.user,
-                            login: widget.login,
-                            trade: widget.trade,
-                          )),
-                );
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 8),
-                  Text(
-                    'Liste',
-                    style: TextStyle(color: _secondButtonColor, fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
+                onTap: () {
+                  setState(() {
+                    _firstButtonColor = Color.fromRGBO(206, 63, 143, 1);
+                    _secondButtonColor = Colors.white;
+                  });
+                  ;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => listeScreen(
+                              auth: widget.auth,
+                              user: widget.user,
+                              login: widget.login,
+                              trade: widget.trade,
+                            )),
+                  );
+                },
+                child: !widget.trade
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'Liste',
+                            style: TextStyle(
+                                color: _secondButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'List',
+                            style: TextStyle(
+                                color: _secondButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )),
           ],
         ),
       ),

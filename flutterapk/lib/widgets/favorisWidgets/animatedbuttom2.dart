@@ -44,55 +44,78 @@ class _AnimatedButtom2State extends State<AnimatedButtom2> {
           innerVerticalPadding: 0,
           children: [
             ButtonBarEntry(
-              onTap: () {
-                setState(() {
-                  _firstButtonColor = Colors.white;
-                  _secondButtonColor = Color.fromRGBO(206, 63, 143, 1);
-                });
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LoginScreen(
-                            trade: widget.trade,
-                          )),
-                );
-              },
-              child: Column(
-                children: [
-                  SizedBox(height: 8),
-                  Text(
-                    'Carte',
-                    style: TextStyle(color: _firstButtonColor, fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
+                onTap: () {
+                  setState(() {
+                    _firstButtonColor = Colors.white;
+                    _secondButtonColor = Color.fromRGBO(206, 63, 143, 1);
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginScreen(
+                              trade: widget.trade,
+                            )),
+                  );
+                },
+                child: !widget.trade
+                    ? Column(
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'Carte',
+                            style: TextStyle(
+                                color: _firstButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'Map',
+                            style: TextStyle(
+                                color: _firstButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )),
             ButtonBarEntry(
-              onTap: () {
-                setState(() {
-                  _firstButtonColor = Color.fromRGBO(206, 63, 143, 1);
-                  _secondButtonColor = Colors.white;
-                });
-                ;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LoginScreen(
-                            trade: widget.trade,
-                          )),
-                );
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 8),
-                  Text(
-                    'Liste',
-                    style: TextStyle(color: _secondButtonColor, fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
+                onTap: () {
+                  setState(() {
+                    _firstButtonColor = Color.fromRGBO(206, 63, 143, 1);
+                    _secondButtonColor = Colors.white;
+                  });
+                  ;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginScreen(
+                              trade: widget.trade,
+                            )),
+                  );
+                },
+                child: !widget.trade
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'Liste',
+                            style: TextStyle(
+                                color: _secondButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 8),
+                          Text(
+                            'List',
+                            style: TextStyle(
+                                color: _secondButtonColor, fontSize: 14),
+                          ),
+                        ],
+                      )),
           ],
         ),
       ),

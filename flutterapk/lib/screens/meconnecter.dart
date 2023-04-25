@@ -841,7 +841,7 @@ class _MeconnecterState extends State<meconnecter> {
                     maxZoom: 19.0,
                     maxNativeZoom: 19.0,
                     urlTemplate:
-                        "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']),
                 //userAgentPackageName: 'com.example.app',
                 MarkerLayer(
@@ -871,48 +871,13 @@ class _MeconnecterState extends State<meconnecter> {
               child: IconButton(
                 icon: Icon(
                   Icons.menu,
-                  color: Colors.white,
+                  color: Colors.black,
                   size: 40,
                 ),
                 onPressed: () => scaffoldKey.currentState.openDrawer(),
               ),
             ),
 
-            //afficher les deux boutons "carte" et "liste"
-            /*Positioned(
-              left: 120,
-              top: 10,
-              height: 50,
-              child: Row(children: [
-                ChipsChoice.single(
-                  value: tag,
-                  onChanged: (val) {
-                    setState(() {
-                      tag = val;
-                      if (tag == 1) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen(
-                                      trade: widget.trade,
-                                    )));
-                      }
-                    });
-                  },
-                  choiceItems: C2Choice.listFrom(
-                      source: options, value: (i, v) => i, label: (i, v) => v),
-                  choiceActiveStyle: const C2ChoiceStyle(
-                      color: Colors.white,
-                      backgroundColor: Color.fromRGBO(206, 63, 143, 1),
-                      borderColor: Color.fromRGBO(206, 63, 143, 1),
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  choiceStyle: const C2ChoiceStyle(
-                      color: Color.fromRGBO(206, 63, 143, 1),
-                      backgroundColor: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                )
-              ]),
-            ),*/
             AnimatedButtom2(
               auth: widget.auth,
               user: widget.user,
@@ -989,7 +954,7 @@ class _MeconnecterState extends State<meconnecter> {
                           child: Icon(
                             Icons.add,
                             size: 22,
-                            color: Colors.white,
+                            color: Color.fromRGBO(206, 63, 143, 1),
                           ),
                         ),
                         Align(
@@ -999,7 +964,7 @@ class _MeconnecterState extends State<meconnecter> {
                               height: 18,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.white,
+                                color: Color.fromRGBO(206, 63, 143, 1),
                               ),
                             ))
                       ],
@@ -1025,7 +990,7 @@ class _MeconnecterState extends State<meconnecter> {
                     child: IconButton(
                       icon: Image.asset(
                         'assets/images/icones/ICON_LIVRE.png',
-                        color: Colors.white,
+                        color: Color.fromRGBO(206, 63, 143, 1),
                       ),
                     ),
                   ),

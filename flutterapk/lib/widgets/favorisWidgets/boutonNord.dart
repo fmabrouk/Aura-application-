@@ -43,6 +43,7 @@ class _BoutonNordState extends State<BoutonNord> {
               angle: widget.setRotationImage(widget.mapController.rotation),
               child: Image(
                 image: AssetImage('assets/location-arrow-solid copie.png'),
+                color: Colors.black,
               ),
             ),
           )),

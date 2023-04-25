@@ -1197,7 +1197,7 @@ class _CarteScreenState extends State<CarteScreen> {
               children: [
                 TileLayer(
                   urlTemplate:
-                      // "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+                      //"https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
 
                       'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
@@ -1229,7 +1229,7 @@ class _CarteScreenState extends State<CarteScreen> {
               child: IconButton(
                 icon: Icon(
                   Icons.menu,
-                  color: Colors.white,
+                  color: Colors.black,
                   size: 40,
                 ),
                 onPressed: () => scaffoldKey.currentState.openDrawer(),
@@ -1529,7 +1529,7 @@ class _CarteScreenState extends State<CarteScreen> {
                           child: Icon(
                             Icons.add,
                             size: 22,
-                            color: Colors.white,
+                            color: Color.fromRGBO(206, 63, 143, 1),
                           ),
                         ),
                         Align(
@@ -1539,7 +1539,7 @@ class _CarteScreenState extends State<CarteScreen> {
                               height: 18,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.white,
+                                color: Color.fromRGBO(206, 63, 143, 1),
                               ),
                             ))
                       ],
@@ -1565,7 +1565,7 @@ class _CarteScreenState extends State<CarteScreen> {
                     child: IconButton(
                       icon: Image.asset(
                         'assets/images/icones/ICON_LIVRE.png',
-                        color: Colors.white,
+                        color: Color.fromRGBO(206, 63, 143, 1),
                       ),
                     ),
                   ),

@@ -104,7 +104,8 @@ class Balise {
               style: TextStyle(
                 fontFamily: 'myriad',
                 fontSize: 23,
-                color: Colors.white,
+                //color: Colors.white,
+                color: Colors.black,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
